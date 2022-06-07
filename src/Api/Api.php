@@ -96,15 +96,15 @@ class Api
         ];
 
         $fields['nbrech'] = (0 < $count = count($data['schedule'])) ? $count : null;
-        for ($i = 1; $i < 5; $i++) {
+        for ($i = 0; $i < $count; $i++) {
             if (!isset($data['schedule'][$i])) {
-                $fields['dateech' . $i] = null;
-                $fields['montantech' . $i] = null;
+                $fields['dateech' . ($i+1)] = null;
+                $fields['montantech' . ($i+1)] = null;
                 continue;
             }
 
-            $fields['dateech' . $i] = $data['schedule'][$i]['date'];
-            $fields['montantech' . $i] = $data['schedule'][$i]['amount'] . $data['currency'];
+            $fields['dateech' . ($i+1)] = $data['schedule'][$i]['date'];
+            $fields['montantech' . ($i+1)] = $data['schedule'][$i]['amount'] . $data['currency'];
         }
 
         $optional = [
